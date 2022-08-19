@@ -38,6 +38,7 @@ next-env.d.ts
 # OSX
 #
 .DS_Store
+pages/blog/index.js
 
 # Xcode
 #
