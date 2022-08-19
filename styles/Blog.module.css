@@ -1,0 +1,36 @@
+.posts {
+  width: 100%;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.post {
+  border: 1px solid #ccc;
+}
+
+.post h3 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.postThumbnail {
+  width: 100%;
+  margin-bottom: 15px;
+  padding-top: 55%;
+  position: relative;
+}
+
+.postThumbnail img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -o-object-fit: cover;
+  object-fit: cover;
+}

@@ -39,6 +39,17 @@
   text-decoration: underline;
 }
 
+a.default {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+a.default:hover,
+a.default:focus,
+a.default:active {
+  text-decoration: underline;
+}
+
 .title {
   margin: 0;
   line-height: 1.15;
