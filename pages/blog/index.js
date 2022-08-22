@@ -13,7 +13,9 @@ function Index({ posts }) {
 			<main className={styles.main}>
 				<h1>Blog</h1>
 				<div className={stylesBlog.linkBack}>
-					<a href="/" className={styles.default}>Back</a>
+					<Link href="/" >
+						<a className={styles.default}>Back</a>
+					</Link>
 				</div>
 				<div className={stylesBlog.posts}>
 					{
@@ -58,13 +60,13 @@ export async function getStaticProps() {
 		},
 	})
 
-	const json = await res.json()
+	const data = await res.json()
 
-	console.log('blog json', json)
+	console.log('blog data', data)
 
 	return {
 		props: {
-			posts: json,
+			posts: data,
 		},
 	}
 }

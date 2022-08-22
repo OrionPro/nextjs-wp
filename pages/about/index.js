@@ -1,5 +1,6 @@
 import styles from "../../styles/Home.module.css";
 import stylesBlog from "../../styles/Blog.module.css";
+import Link from 'next/link'
 
 function Index() {
 	return (
@@ -7,7 +8,9 @@ function Index() {
 			<main className={styles.main}>
 				<h1>About</h1>
 				<div className={stylesBlog.linkBack}>
-					<a href="/" className={styles.default}>Back</a>
+					<Link href="/" >
+						<a className={styles.default}>Back</a>
+					</Link>
 				</div>
 			</main>
 		</div>

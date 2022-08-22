@@ -2,6 +2,13 @@
   padding: 0 2rem;
 }
 
+.containerCenter {
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .main {
   min-height: 100vh;
   padding: 4rem 0;

@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import Link from "next/link";
+
+//dev server should not be online while building . Если мы запускаем build то будет ошибка Error: EPERM: operation not permitted, open 'D:\projects\next-wp\.next\trace' потому что запушен и dev сервер
 
 export default function Home() {
   return (
@@ -15,8 +18,12 @@ export default function Home() {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
-        <a href="/about" className={styles.default}>To About</a>
-        <a href="/blog" className={styles.default}>To Blog</a>
+        <Link href="/about" >
+          <a className={styles.default}>To About</a>
+        </Link>
+        <Link href="/blog" >
+          <a className={styles.default}>To Blog</a>
+        </Link>
         <p className={styles.description}>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.js</code>
