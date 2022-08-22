@@ -2,6 +2,7 @@ import styles from "../../styles/Home.module.css";
 import stylesBlog from "../../styles/Blog.module.css";
 import Image from 'next/image';
 import { Markup } from 'react-render-markup';
+import Link from 'next/link'
 
 
 function Index({ posts }) {
@@ -17,21 +18,27 @@ function Index({ posts }) {
 				<div className={stylesBlog.posts}>
 					{
 						posts.map(item => {
-							return <div className={stylesBlog.post} key={item.id}>
-								<div className={stylesBlog.postThumbnail}>
-									{
-										<Image src={item.fimg_url} alt='' layout='fill'/>
-									}
-								</div>
-								<h3>
-									{
-										item.title.rendered
-									}
-								</h3>
-								<div className={stylesBlog.postContent}>
-									<Markup markup={item.excerpt.rendered} />
-								</div>
-							</div>
+							return (
+
+									<Link key={item.id} href={`/posts/${item.id}`}>
+										<div className={stylesBlog.post} >
+											<div className={stylesBlog.postThumbnail}>
+												{
+													<Image src={item.fimg_url} alt='' layout='fill'/>
+												}
+											</div>
+											<h3>
+												{
+													item.title.rendered
+												}
+											</h3>
+											<div className={stylesBlog.postContent}>
+												<Markup markup={item.excerpt.rendered} />
+											</div>
+										</div>
+									</Link>
+
+							)
 						})
 					}
 				</div>
@@ -50,9 +57,10 @@ export async function getStaticProps() {
 			Authorization: `Bearer ${process.env.JWT_TOKEN}`
 		},
 	})
-	console.log('res', res)
 
 	const json = await res.json()
+
+	console.log('blog json', json)
 
 	return {
 		props: {
