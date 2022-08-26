@@ -63,6 +63,7 @@ export async function getStaticProps() {
 	const data = await res.json()
 
 	console.log('blog data', data)
+	console.log('blog process.env.JWT_TOKEN', process.env.JWT_TOKEN)
 
 	return {
 		props: {
