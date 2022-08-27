@@ -5,8 +5,9 @@ import { Markup } from 'react-render-markup';
 import Link from 'next/link'
 
 
-function Index({ posts }) {
+function Index({ posts, title }) {
 	console.log('posts', posts)
+	console.log('title', title)
 
 	return (
 		<div className={styles.container}>
@@ -67,6 +68,28 @@ export async function getServerSideProps() {
 	return {
 		props: {
 			posts: data,
+		},
+	}
+}
+
+export async function getStaticProps() {
+
+	const res = await fetch('https://kuhni.orionpro.in/wp-json/wp/v2/posts?_fields=title', {
+		headers: {
+			'Accept': 'application/json',
+			'Content-type' : 'application/json',
+			'Content-Disposition': 'attachment',
+			Authorization: `Bearer ${process.env.JWT_TOKEN}`
+		},
+	})
+
+	const data = await res.json()
+
+	console.log('blog data', data);
+
+	return {
+		props: {
+			title: data,
 		},
 	}
 }
