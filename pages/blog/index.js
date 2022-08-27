@@ -49,7 +49,7 @@ function Index({ posts }) {
 	)
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 
 	const res = await fetch('https://kuhni.orionpro.in/wp-json/wp/v2/posts?_fields=fimg_url,author,id,excerpt,title,link,featured_media_src_url,featured_media', {
 		headers: {
