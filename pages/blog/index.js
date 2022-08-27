@@ -5,9 +5,8 @@ import { Markup } from 'react-render-markup';
 import Link from 'next/link'
 
 
-function Index({ posts, title }) {
+function Index({ posts }) {
 	console.log('posts', posts)
-	console.log('title', title)
 
 	return (
 		<div className={styles.container}>
@@ -49,10 +48,14 @@ function Index({ posts, title }) {
 		</div>
 	)
 }
+// для того чтобы на серваке брались новые данные в api как на dev версии надо юзать getServerSideProps. А так на серваке надо делать deploy т.е. новый build
+export async function getServerSideProps({req, res}) {
+	res.setHeader(
+		'Cache-Control',
+		'public, s-maxage=10, stale-while-revalidate=59'
+	)
 
-export async function getServerSideProps() {
-
-	const res = await fetch('https://kuhni.orionpro.in/wp-json/wp/v2/posts?_fields=fimg_url,author,id,excerpt,title,link,featured_media_src_url,featured_media', {
+	const result = await fetch('https://kuhni.orionpro.in/wp-json/wp/v2/posts?_fields=fimg_url,author,id,excerpt,title,link,featured_media_src_url,featured_media', {
 		headers: {
 			'Accept': 'application/json',
 			'Content-type' : 'application/json',
@@ -61,35 +64,13 @@ export async function getServerSideProps() {
 		},
 	})
 
-	const data = await res.json()
+	const data = await result.json()
 
 	console.log('blog data', data);
 
 	return {
 		props: {
 			posts: data,
-		},
-	}
-}
-
-export async function getStaticProps() {
-
-	const res = await fetch('https://kuhni.orionpro.in/wp-json/wp/v2/posts?_fields=title', {
-		headers: {
-			'Accept': 'application/json',
-			'Content-type' : 'application/json',
-			'Content-Disposition': 'attachment',
-			Authorization: `Bearer ${process.env.JWT_TOKEN}`
-		},
-	})
-
-	const data = await res.json()
-
-	console.log('blog data', data);
-
-	return {
-		props: {
-			title: data,
 		},
 	}
 }
