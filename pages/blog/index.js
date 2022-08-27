@@ -5,9 +5,8 @@ import { Markup } from 'react-render-markup';
 import Link from 'next/link'
 
 
-function Index({ posts, token }) {
+function Index({ posts }) {
 	console.log('posts', posts)
-	console.log('token', token)
 
 	return (
 		<div className={styles.container}>
