@@ -50,7 +50,7 @@ function Index({ posts }) {
 }
 // Обычно тут используем getStaticProps
 // для того чтобы на серваке брались новые данные в api как на dev версии надо юзать getServerSideProps. А так на серваке надо делать deploy т.е. новый build
-// Или можно юзать кеширование https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props
+// И можно юзать кеширование https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props
 // Для чего то динамичного в компоненте можно юзать data fetching with SWR (React hook SWR) https://nextjs.org/docs/basic-features/data-fetching/client-side
 //export async function getServerSideProps({req, res}) {
 export async function getStaticProps() {
