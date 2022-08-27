@@ -48,13 +48,15 @@ function Index({ posts }) {
 		</div>
 	)
 }
+// Обычно тут используем getStaticProps
 // для того чтобы на серваке брались новые данные в api как на dev версии надо юзать getServerSideProps. А так на серваке надо делать deploy т.е. новый build
 // Или можно юзать кеширование https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props
-export async function getServerSideProps({req, res}) {
-	res.setHeader(
-		'Cache-Control',
-		'public, s-maxage=100, stale-while-revalidate=200'
-	)
+//export async function getServerSideProps({req, res}) {
+export async function getStaticProps() {
+	// res.setHeader(
+	// 	'Cache-Control',
+	// 	'public, s-maxage=10, stale-while-revalidate=59'
+	// )
 
 	const result = await fetch('https://kuhni.orionpro.in/wp-json/wp/v2/posts?_fields=fimg_url,author,id,excerpt,title,link,featured_media_src_url,featured_media', {
 		headers: {
