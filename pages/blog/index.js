@@ -3,10 +3,36 @@ import stylesBlog from "../../styles/Blog.module.css";
 import Image from 'next/image';
 import { Markup } from 'react-render-markup';
 import Link from 'next/link'
+import {useCallback, useEffect, useRef, useState} from "react";
 
 
 function Index({ posts }) {
 	console.log('posts', posts)
+	let y = useRef(0).current;
+	//Detect scroll direction in React js
+	const handleNavigation = useCallback(
+		e => {
+			if(typeof window !== "undefined") {
+				if (y > window.scrollY) {
+					console.log("scrolling up");
+				} else if (y < window.scrollY) {
+					console.log("scrolling down");
+				}
+				y = window.scrollY;
+			}
+		}, [y]
+	);
+
+	useEffect(() => {
+		if(typeof window !== "undefined") {
+			y = window.scrollY;
+		}
+		window.addEventListener('scroll', handleNavigation);
+		return () => {
+			window.removeEventListener('scroll', handleNavigation);
+		};
+	},[]);
+
 
 	return (
 		<div className={styles.container}>
